@@ -1,8 +1,6 @@
 package ng.tagithub.myhomeapp.views.fragments
 
-import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.Settings
 import androidx.fragment.app.Fragment
@@ -11,14 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import ng.tagithub.myhomeapp.R
-import ng.tagithub.myhomeapp.data.PreferenceHelper
 import ng.tagithub.myhomeapp.databinding.FragmentSecondStepBinding
 import ng.tagithub.myhomeapp.utils.isAppDefaultLauncher
-import ng.tagithub.myhomeapp.utils.isDefaultLauncher
 import ng.tagithub.myhomeapp.viewmodels.OnboardingViewModel
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
@@ -38,10 +33,9 @@ class SecondStepFragment : Fragment(), KodeinAware {
         ViewModelProvider(requireActivity(), viewModelFactory)[OnboardingViewModel::class.java]
     }
 
-    // If you need to launch Settings → Home, register for result:
     private val launcher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            val isAppDefault = requireContext().isAppDefaultLauncher()//isDefaultLauncher()
+            val isAppDefault = requireContext().isAppDefaultLauncher()
             viewModel.setAsDefaultLauncher(isAppDefault)
 
             if (isAppDefault){

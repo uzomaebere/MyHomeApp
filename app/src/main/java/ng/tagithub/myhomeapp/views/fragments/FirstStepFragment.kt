@@ -6,11 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import ng.tagithub.myhomeapp.R
 import ng.tagithub.myhomeapp.databinding.FragmentFirstStepBinding
-import ng.tagithub.myhomeapp.viewmodels.OnboardingViewModel
 
 
 /**
@@ -21,7 +19,6 @@ import ng.tagithub.myhomeapp.viewmodels.OnboardingViewModel
 class FirstStepFragment : Fragment() {
 
     private lateinit var binding: FragmentFirstStepBinding
-    private val viewModel: OnboardingViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

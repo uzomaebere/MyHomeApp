@@ -65,7 +65,7 @@ class HomeActivity : AppCompatActivity(), KodeinAware {
 
     private fun checkLauncherSetup() {
 
-        val isNowDefault = `isAppDefaultLauncher`()
+        val isNowDefault = isAppDefaultLauncher()
 
         val intent = Intent(this, OnboardingActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -76,15 +76,16 @@ class HomeActivity : AppCompatActivity(), KodeinAware {
             sharedPref.setFirstLaunchDone(true)
             startActivity(intent)
             finish()
-            //  return
-        } else if (isNowDefault && !sharedPref.getSetupCompleteStatus()) {
+        }
+        else if (isNowDefault && !sharedPref.getSetupCompleteStatus()) {
             Log.d("HomeActivity", "App set as default")
             // go directly to the Step 3 if launcher is default but setup not complete
             intent.putExtra("stepNo", 3)
             startActivity(intent)
             finish()
-        } else if (!isNowDefault && !sharedPref.getSetupCompleteStatus()) {
-            Log.d("HomeActivity", "App set as default")
+        }
+        else if (!isNowDefault && !sharedPref.getSetupCompleteStatus()) {
+            Log.d("HomeActivity", "App not set as default")
             //  Go to step 2
             intent.putExtra("stepNo", 2)
             startActivity(intent)

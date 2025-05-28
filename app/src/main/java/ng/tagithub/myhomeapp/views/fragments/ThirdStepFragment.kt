@@ -6,11 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.activityViewModels
 import ng.tagithub.myhomeapp.R
 import ng.tagithub.myhomeapp.data.PreferenceHelper
 import ng.tagithub.myhomeapp.databinding.FragmentThirdStepBinding
-import ng.tagithub.myhomeapp.viewmodels.OnboardingViewModel
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance

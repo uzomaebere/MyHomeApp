@@ -3,15 +3,12 @@ package ng.tagithub.myhomeapp.views
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import ng.tagithub.myhomeapp.R
 import ng.tagithub.myhomeapp.databinding.ActivityOnboardingBinding
-import ng.tagithub.myhomeapp.utils.isDefaultLauncher
-import ng.tagithub.myhomeapp.viewmodels.HomeViewmodel
 import ng.tagithub.myhomeapp.viewmodels.OnboardingViewModel
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
@@ -37,8 +34,9 @@ class OnboardingActivity : AppCompatActivity(), KodeinAware {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerOnboarding) as NavHostFragment
         navController = navHostFragment.navController
 
-        // Check
+        // Observe the livedata when updated
         viewModel.isDefaultLauncher.observe(this) { isDefault ->
+
             if (isDefault && navController.currentDestination?.id != R.id.thirdStepFragment) {
                 Log.d("OnboardingActivity", "Load Step 3")
                 navController.navigate(R.id.action_firstStepFragment_to_thirdStepFragment)
