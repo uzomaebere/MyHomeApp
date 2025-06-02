@@ -22,6 +22,6 @@ class AppModule: Application(), KodeinAware {
         bind<ViewModelProvider.Factory>() with singleton { KodeinViewModelFactory(kodein) }
         bind<HomeViewmodel>() with provider { HomeViewmodel() }
         bind<OnboardingViewModel>() with provider { OnboardingViewModel() }
-        bind<PreferenceHelper>() with singleton { PreferenceHelper.getInstance(instance()) }
+        bind<PreferenceHelper>() with singleton { PreferenceHelper(instance()) }
     }
 }

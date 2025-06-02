@@ -4,21 +4,12 @@ import android.content.Context
 import android.content.SharedPreferences
 
 
-class PreferenceHelper private constructor(context: Context) {
+class PreferenceHelper(context: Context) {
 
     companion object {
         private const val PREF_NAME = "MyAppPreferences"
-        private var instance: PreferenceHelper? = null
         const val PREF_SETUP_COMPLETE = "PREF_SETUP_COMPLETE"
         const val PREF_FIRST_LAUNCH = "PREF_FIRST_LAUNCH"
-
-
-        fun getInstance(context: Context): PreferenceHelper {
-            if (instance == null) {
-                instance = PreferenceHelper(context.applicationContext)
-            }
-            return instance!!
-        }
     }
 
     private val sharedPreferences: SharedPreferences =

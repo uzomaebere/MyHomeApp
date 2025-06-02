@@ -1,11 +1,11 @@
 package ng.tagithub.myhomeapp.views
 
-import android.content.ComponentName
 import android.content.Intent
 import android.content.pm.ResolveInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -38,6 +38,12 @@ class HomeActivity : AppCompatActivity(), KodeinAware {
         viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewmodel::class.java]
         binding.lifecycleOwner = this
 
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // Do nothing
+            }
+        })
+
         // Display apps if app is default launcher
         showAppDrawer()
 
@@ -59,7 +65,7 @@ class HomeActivity : AppCompatActivity(), KodeinAware {
 
         if (viewModel.appList.value == null) {
             val apps = getApps()
-            viewModel.appList.value = apps
+            viewModel.updateAppList(apps)
         }
     }
 
@@ -91,8 +97,6 @@ class HomeActivity : AppCompatActivity(), KodeinAware {
             startActivity(intent)
             finish()
         }
-
-
     }
 
     private fun getApps(): List<ResolveInfo> {
